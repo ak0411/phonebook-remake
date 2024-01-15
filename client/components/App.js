@@ -77,7 +77,6 @@ const App = () => {
         })
     }
   }
-
   const personsToShow = persons.filter((person) => person.name.toLowerCase().includes(newFilter.toLowerCase()))
 
   const handleDelete = (person) => {
