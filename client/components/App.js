@@ -94,7 +94,7 @@ const App = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container vh-100 shadow-sm">
       <h1>Phonebook</h1>
       <Notification notification={notification} />
       <Filter value={newFilter} onChange={(event) => setNewFilter(event.target.value)} />

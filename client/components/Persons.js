@@ -2,7 +2,7 @@ import React from 'react'
 
 const Persons = ({ persons, handleDelete }) => {
   return (
-    <table className="w-50">
+    <table className="table table-striped">
       <tbody>
         {persons.map((p) => (
           <tr key={p.id}>
