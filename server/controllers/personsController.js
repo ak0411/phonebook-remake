@@ -1,21 +1,4 @@
-const mongoose = require('mongoose')
-const personSchema = require('../models/person')
-
-mongoose.set('strictQuery', false)
-
-const url = process.env.MONGODB_URI
-
-console.log('connecting to', url)
-
-mongoose.connect(url)
-  .then(() => {
-    console.log('connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('error connecting to MongoDB: ', error.message)
-  })
-
-const Person = mongoose.model('Person', personSchema)
+const Person = require('../models/person')
 
 const info = async (req, res) => {
   Person.countDocuments({}).then((count) => {
@@ -81,11 +64,18 @@ const update = async (req, res, next) => {
     .catch((err) => next(err))
 }
 
+const reset = async (req, res) => {
+  await Person.deleteMany({})
+
+  res.status(204).end()
+}
+
 module.exports = {
   info,
   getAll,
   getById,
   remove,
   create,
-  update
+  update,
+  reset
 }

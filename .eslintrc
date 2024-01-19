@@ -3,8 +3,12 @@
   "parser": "@babel/eslint-parser",
   "env": {
     "browser": true,
-    "jest": true
+    "jest": true,
+    "cypress/globals": true
   },
+  "plugins": [
+    "react", "jest", "cypress"
+  ],
   "rules": {
     "semi": [
       "error",
