@@ -3,7 +3,7 @@
   "parser": "@babel/eslint-parser",
   "env": {
     "browser": true,
-    "jest/globals": true
+    "jest": true
   },
   "rules": {
     "semi": [

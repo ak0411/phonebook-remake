@@ -7,8 +7,6 @@ import Persons from './Persons'
 
 const App = () => {
   const [persons, setPersons] = useState([])
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
   const [notification, setNotification] = useState(null)
 
@@ -34,8 +32,8 @@ const App = () => {
       })
   }, [])
 
-  const addPerson = (event) => {
-    event.preventDefault()
+  const addPerson = (personObject) => {
+    const { name: newName, number: newNumber } = personObject
     const person = persons.find((p) => p.name === newName)
 
     if (person) {
@@ -45,8 +43,6 @@ const App = () => {
         personService
           .update(updatedPerson.id, updatedPerson).then((returnedPerson) => {
             setPersons(persons.map((p) => (p.name !== newName ? p : returnedPerson)))
-            setNewName('')
-            setNewNumber('')
             Notify(false, `Updated ${returnedPerson.name}`)
           })
           .catch((error) => {
@@ -68,8 +64,6 @@ const App = () => {
       personService
         .create(personObject).then((returnedPerson) => {
           setPersons(persons.concat(returnedPerson))
-          setNewName('')
-          setNewNumber('')
           Notify(false, `Added ${returnedPerson.name}`)
         })
         .catch((error) => {
@@ -99,13 +93,7 @@ const App = () => {
       <Notification notification={notification} />
       <Filter value={newFilter} onChange={(event) => setNewFilter(event.target.value)} />
       <hr />
-      <PersonForm
-        onSubmit={addPerson}
-        valueName={newName}
-        onChangeName={(event) => setNewName(event.target.value)}
-        valueNumber={newNumber}
-        onChangeNumber={(event) => setNewNumber(event.target.value)}
-      />
+      <PersonForm addPerson={addPerson} />
       <hr />
       <h4>Numbers</h4>
       <Persons persons={personsToShow} handleDelete={handleDelete} />
