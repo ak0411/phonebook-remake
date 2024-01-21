@@ -17,6 +17,7 @@ const PersonForm = ({ addPerson }) => {
       <form onSubmit={handleAddPerson} className="w-25">
         <div className="form-group mb-2">
           <input
+            id="name"
             type="text"
             className="form-control"
             placeholder="Name"
@@ -26,6 +27,7 @@ const PersonForm = ({ addPerson }) => {
         </div>
         <div className="form-group mb-2">
           <input
+            id="number"
             type="text"
             className="form-control"
             placeholder="Number"
@@ -34,7 +36,7 @@ const PersonForm = ({ addPerson }) => {
           />
         </div>
         <div>
-          <button type="submit" className="btn btn-primary">Add</button>
+          <button id="add-button" type="submit" className="btn btn-primary">Add</button>
         </div>
       </form>
     </div>

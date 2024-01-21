@@ -11,7 +11,7 @@ router.post('/persons', persons.create)
 router.put('/persons/:id', persons.update)
 
 if (process.env.NODE_ENV === 'test') {
-  router.post('/api/testing/reset', persons.reset)
+  router.post('/testing/reset', persons.reset)
 }
 
 module.exports = router
