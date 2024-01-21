@@ -14,4 +14,8 @@ if (process.env.NODE_ENV === 'test') {
   router.post('/testing/reset', persons.reset)
 }
 
+router.get('/version', (req, res) => {
+  res.send('1')
+})
+
 module.exports = router
