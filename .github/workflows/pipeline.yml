@@ -28,8 +28,10 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
-          start: TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }} npm run start:test
+          start: npm run start:test
           wait-on: http://localhost:8000
+        env:
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
         env:
